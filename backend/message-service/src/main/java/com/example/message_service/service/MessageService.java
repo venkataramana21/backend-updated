@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageService {
    
-    private String accountSid="ACeb25f13bc86986d5def7f248c6aefd12";
-    private String authToken = "86d75118f24074c3b6f297979f407ad1";
-    private String fromPhoneNumber = "+13156464086";
+    
 
     public MessageService() {
         Twilio.init(accountSid, authToken);
