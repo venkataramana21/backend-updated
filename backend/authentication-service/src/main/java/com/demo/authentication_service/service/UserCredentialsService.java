@@ -34,7 +34,7 @@ public class UserCredentialsService {
 		return true;
 	}
 
-	public UserCredentialsEntity updateProfile(Integer userId,UserCredentialsEntity userCredentialsEntity) {
+	public UserCredentialsEntity updateProfile(Long userId,UserCredentialsEntity userCredentialsEntity) {
 		Optional<UserCredentialsEntity>us=authDao.findById(userId);
 		if(us.isPresent()){
 			UserCredentialsEntity u=us.get();
@@ -48,7 +48,7 @@ public class UserCredentialsService {
 		return us.get();
 	}
 
-	public void deleteUser(Integer userId) {
+	public void deleteUser(Long userId) {
 		authDao.deleteById(userId);
 	}
 }

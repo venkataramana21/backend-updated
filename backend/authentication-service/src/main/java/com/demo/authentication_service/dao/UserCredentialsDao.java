@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.demo.authentication_service.entity.UserCredentialsEntity;
 
 @Repository
-public interface UserCredentialsDao extends JpaRepository<UserCredentialsEntity, Integer>{
+public interface UserCredentialsDao extends JpaRepository<UserCredentialsEntity, Long>{
 	public Optional<UserCredentialsEntity> findByEmail(String email);
 }

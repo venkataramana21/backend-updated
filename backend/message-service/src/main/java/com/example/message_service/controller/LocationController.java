@@ -29,7 +29,7 @@ public class LocationController {
 
         locationRepository.save(request);
 
-        messageService.sendSms(emergencyContactInterface.getContactByUserId(request.getUserId()),message);
+//        messageService.sendSms(emergencyContactInterface.getContactByUserId(request.getUserId()),message);
     }
 
 }

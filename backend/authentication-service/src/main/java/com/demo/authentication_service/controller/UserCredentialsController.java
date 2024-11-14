@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.demo.authentication_service.entity.UserCredentialsEntity;
@@ -21,6 +22,8 @@ import java.util.Map;
 public class UserCredentialsController {
 	@Autowired
 	JwtService jwtService;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	String token="";
 
 	@Autowired
@@ -62,13 +65,24 @@ public class UserCredentialsController {
 
 		return null;
 	}
-	@PutMapping("/update/{userId}")
-	public UserCredentialsEntity updateProfile(@PathVariable Integer userId,@RequestBody UserCredentialsEntity userCredentialsEntity){
-		return userCredService.updateProfile(userId,userCredentialsEntity);
+
+	@GetMapping("/findByEmail")
+	public UserCredentialsEntity getUserByEmail(@RequestParam String email){
+		return userCredentialsDao.findByEmail(email).get();
 	}
 
+	@PutMapping("/update/{userId}")
+	public UserCredentialsEntity updateProfile(@PathVariable Long userId,@RequestBody UserCredentialsEntity userCredentialsEntity){
+		return userCredService.updateProfile(userId,userCredentialsEntity);
+	}
+	@PutMapping("/updatePassword")
+	public void updatePassword(@RequestParam long userId, @RequestParam String newPassword){
+		UserCredentialsEntity u=userCredentialsDao.findById(userId).get();
+		u.setPassword(passwordEncoder.encode(newPassword));
+		userCredentialsDao.saveAndFlush(u);
+	}
 	@DeleteMapping("/delete/{userId}")
-	public void deleteUser(@PathVariable Integer userId){
+	public void deleteUser(@PathVariable Long userId){
 		userCredService.deleteUser(userId);
 	}
 }
