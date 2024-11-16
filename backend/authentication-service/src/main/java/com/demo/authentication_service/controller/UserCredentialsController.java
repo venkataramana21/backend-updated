@@ -19,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
+
 public class UserCredentialsController {
 	@Autowired
 	JwtService jwtService;
