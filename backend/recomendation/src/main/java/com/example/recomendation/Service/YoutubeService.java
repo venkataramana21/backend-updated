@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class YoutubeService {
 
-    private static final String API_KEY = "AIzaSyA2bOuXG1jGOHj1v7F9D-iiXLzk9JxzLJk";
+    private static final String API_KEY = "";
     private static final String APPLICATION_NAME = "YouTubeRecommendationApp";
     private static final String QUERY = "self help reducing stress anxiety panic attacks breathing exercises stretching calm music meditation";
 
